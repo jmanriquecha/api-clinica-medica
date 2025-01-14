@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Embeddable
 @Getter
-@NoArgsConstructor
+//@NoArgsConstructor(force = true)
 @AllArgsConstructor
 public class Direccion {
-    private Long id;
     private String calle;
     private String distrito;
     private String ciudad;
@@ -24,4 +23,6 @@ public class Direccion {
         this.numero = Integer.parseInt(direccion.numero());
         this.complemento = direccion.complemento();
     }
+
+    public Direccion(){}
 }
