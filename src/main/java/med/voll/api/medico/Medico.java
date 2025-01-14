@@ -1,18 +1,16 @@
 package med.voll.api.medico;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import med.voll.api.direccion.Direccion;
 
-@Entity(name = "Medico")
 @Table(name = "medicos")
+@Entity(name = "Medico")
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@ToString
 public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +18,7 @@ public class Medico {
     private String nombre;
     private String email;
     private String telefono;
-    private Integer documento;
+    private String documento;
     @Enumerated(EnumType.STRING)
     private Especialidad especialidad;
     @Embedded
@@ -30,7 +28,7 @@ public class Medico {
         this.nombre  = datosRegistroMedico.nombre();
         this.email = datosRegistroMedico.email();
         this.telefono = datosRegistroMedico.telefono();
-        this.documento = Integer.parseInt(datosRegistroMedico.documento());
+        this.documento = datosRegistroMedico.documento();
         this.especialidad = datosRegistroMedico.especialidad();
         this.direccion = new Direccion(datosRegistroMedico.direccion());
     }
