@@ -1,6 +1,4 @@
-package med.voll.api.medico;
-
-import lombok.NoArgsConstructor;
+package med.voll.api.domain.medico;
 
 public record DatosListadoMedico(
         Long id,
