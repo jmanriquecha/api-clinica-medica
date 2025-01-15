@@ -62,6 +62,16 @@ public class MedicoController {
         medico.desactivarMedico();
         return ResponseEntity.noContent().build(); // Respuesta HTTP 204
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DatosRespuestaMedico> retornaDatosMedico(@PathVariable Long id){
+        Medico medico = medicoRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DatosRespuestaMedico(medico.getId(), medico.getNombre(),
+                medico.getEmail(), medico.getTelefono(), medico.getDocumento(),
+                new DatosDireccion(medico.getDireccion().getCalle(), medico.getDireccion().getDistrito(),
+                        medico.getDireccion().getCiudad(), medico.getDireccion().getNumero(),
+                        medico.getDireccion().getComplemento())));
+    }
     // Elimina los datos de la base de datos
 //    public void eliminarMedico(@PathVariable Long id){
 //        Medico medico = medicoRepository.getReferenceById(id);
