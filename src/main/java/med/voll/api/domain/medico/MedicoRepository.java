@@ -15,10 +15,10 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
     @Query("""
             SELECT m FROM Medico m
             WHERE
-            m.activo = 1
+            m.activo = TRUE
             AND
             m.especialidad = :especialidad
-            AND m.id not in(
+            AND m.id NOT IN(
                 SELECT c.medico.id FROM Consulta c
                 WHERE
                 c.fecha = :fecha
@@ -26,13 +26,13 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             ORDER BY RAND()
             LIMIT 1
             """)
-    Medico elegirMedicoAleatorioDisponibleEnLaFecha(Especialidad especialidad, @NotNull @Future LocalDateTime fecha);
+    Medico elegirMedicoAleatorioDisponibleEnLaFecha(Especialidad especialidad, LocalDateTime fecha);
 
     @Query("""
             SELECT m.activo
             FROM Medico m
             WHERE
-            m.id = :id
+            m.id = :idMedico
             """)
-    boolean findActiveById(Long idMedico);
+    boolean findActivoById(Long idMedico);
 }

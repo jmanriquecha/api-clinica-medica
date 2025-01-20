@@ -18,7 +18,7 @@ public class ValidadorMedicoActivo implements ValidadorDeConsultas {
             return;
         }
 
-        var medicoEstaActivo = medicoRepository.findActiveById(datos.idPaciente());
+        var medicoEstaActivo = medicoRepository.findActivoById(datos.idMedico());
 
         if(!medicoEstaActivo){
             throw new ValidacionException("No puede reservar consulta con un médico inactivo");

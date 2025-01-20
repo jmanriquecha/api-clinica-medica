@@ -13,7 +13,7 @@ public class ValidadorPacienteActivo implements ValidadorDeConsultas {
     private PacienteRepository pacienteRepository;
 
     public void validar(DatosReservaConsulta datos){
-        var pacienteEstaActivo = pacienteRepository.findActiveById(datos.idPaciente());
+        var pacienteEstaActivo = pacienteRepository.findActivoById(datos.idPaciente());
 
         if(!pacienteEstaActivo){
             throw new ValidacionException("No puede reservar consulta con un paciente inactivo");

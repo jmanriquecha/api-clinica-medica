@@ -26,7 +26,7 @@ public class ReservaDeConsultas {
     @Autowired
     private List<ValidadorDeConsultas> validadores; // Incluye todos los válidadores que implementan la intefaz
 
-    public void reservar(DatosReservaConsulta datos){
+    public DatosDetalleConsulta reservar(DatosReservaConsulta datos){
 
         if(!pacienteRepository.existsById(datos.idPaciente())){
             throw new ValidacionException("No existe un paciente con el id informado");
@@ -41,10 +41,16 @@ public class ReservaDeConsultas {
         validadores.forEach(v -> v.validar(datos)); // Patrón Strategy
 
         var medico = elegirMedico(datos); // Obtiene al médico de la base de datos
+        if(medico == null){
+            throw new ValidacionException("No existe un médico disponible en ese horario");
+        }
         var paciente = pacienteRepository.findById(datos.idPaciente()).get(); // Obtiene al paciente de la base de datos
-
+        System.out.println(paciente);
         var consulta = new Consulta(null, medico, paciente, datos.fecha(), null);
         consultaRepository.save(consulta);
+
+        return new DatosDetalleConsulta(consulta);
+
     }
 
     private Medico elegirMedico(DatosReservaConsulta datos) {
