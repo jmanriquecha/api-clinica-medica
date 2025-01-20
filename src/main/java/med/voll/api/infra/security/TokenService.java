@@ -36,21 +36,19 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secretJwt); // Validando la firma
             verifier = JWT.require(algorithm)
-                    // specify any specific claim validations
-                    .withIssuer("voll med")
-                    // reusable verifier instance
+                    .withIssuer("voll med") // Validando el emisor
                     .build()
                     .verify(token);
-            verifier.getSubject();
-
         } catch (JWTVerificationException exception) {
-            // Invalid signature/claims
+            System.err.println("Error al verificar el token: " + exception.getMessage());
+            throw new RuntimeException("Token inválido", exception);
         }
 
-        if(verifier.getSubject() == null){
-            throw new RuntimeException("Vefifier inválido");
+        if (verifier.getSubject() == null) {
+            throw new RuntimeException("Verifier inválido");
         }
         return verifier.getSubject();
+
     }
 
     private Instant generaFechaExpiracion(){
