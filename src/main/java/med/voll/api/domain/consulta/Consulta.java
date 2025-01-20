@@ -1,6 +1,7 @@
 package med.voll.api.domain.consulta;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.paciente.Paciente;
@@ -29,4 +30,11 @@ public class Consulta {
 
     private LocalDateTime fecha;
 
+    @Column(name = "motivo_cancelamiento")
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamiento motivoCancelamiento;
+
+    public void cancelar(@NotNull MotivoCancelamiento motivo) {
+        this.motivoCancelamiento = motivo;
+    }
 }
