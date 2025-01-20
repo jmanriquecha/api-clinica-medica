@@ -6,7 +6,7 @@ import med.voll.api.domain.consulta.DatosReservaConsulta;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class ValidacionConsultaConAnticipacion {
+public class ValidadorConsultaConAnticipacion {
 
     public void validar(DatosReservaConsulta datos){
         var fechaConsulta = datos.fecha();

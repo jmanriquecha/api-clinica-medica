@@ -5,7 +5,7 @@ import med.voll.api.domain.consulta.DatosReservaConsulta;
 
 import java.time.DayOfWeek;
 
-public class ValidacionFueraHorarioConsultas {
+public class ValidadorFueraHorarioConsultas {
 
     public void validar(DatosReservaConsulta datos){
         var fechaConsulta = datos.fecha();

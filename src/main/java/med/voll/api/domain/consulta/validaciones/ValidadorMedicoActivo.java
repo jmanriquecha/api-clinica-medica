@@ -3,9 +3,8 @@ package med.voll.api.domain.consulta.validaciones;
 import med.voll.api.domain.ValidacionException;
 import med.voll.api.domain.consulta.DatosReservaConsulta;
 import med.voll.api.domain.medico.MedicoRepository;
-import med.voll.api.domain.paciente.PacienteRepository;
 
-public class ValidarMedicoActivo {
+public class ValidadorMedicoActivo {
 
     private MedicoRepository medicoRepository;
 
